@@ -1,8 +1,8 @@
 package cn.saytime.framework.dao;
 
 import cn.saytime.framework.core.pojo.ErrorCode;
+import cn.saytime.framework.core.pojo.Language;
 import cn.saytime.framework.core.pojo.model.ErrorMessage;
-import com.sun.tools.internal.xjc.Language;
 
 import java.util.HashMap;
 

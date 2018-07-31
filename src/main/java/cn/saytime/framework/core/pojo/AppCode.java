@@ -1,6 +1,5 @@
 package cn.saytime.framework.core.pojo;
 
-import com.sun.tools.internal.xjc.Language;
 
 public interface AppCode {
 

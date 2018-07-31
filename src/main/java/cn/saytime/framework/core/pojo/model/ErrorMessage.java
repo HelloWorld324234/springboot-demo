@@ -1,7 +1,7 @@
 package cn.saytime.framework.core.pojo.model;
 
 import cn.saytime.framework.core.pojo.ErrorCode;
-import com.sun.tools.internal.xjc.Language;
+import cn.saytime.framework.core.pojo.Language;
 
 import java.util.HashMap;
 
