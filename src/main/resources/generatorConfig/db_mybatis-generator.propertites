@@ -1,0 +1,11 @@
+# Mybatis Generator configuration
+jdbc.driverClassName=com.mysql.jdbc.Driver
+jdbc.url=jdbc:mysql://127.0.0.1:3306/blog?useSSL=false&useUnicode=true&charaterEncoding=utf8
+jdbc.user=root
+jdbc.password=123456
+src_main_java=src/main/java
+domainPackage=cn.saytime.model
+daoPackage=cn.saytime.mappers
+src_main_resources=src/main/resources
+sqlMapperPackage=mappers
+generate.connection.location=src/main/resources/generatorConfig/mysql-connector-java-5.1.30.jar

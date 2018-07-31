@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!-- 引入配置文件 -->
+    <properties resource="generatorConfig/db_mybatis-generator.propertites"/>
+    <!-- 指定数据连接驱动jar地址 -->
+    <classPathEntry location="${generate.connection.location}"/>
+
+    <context id="Mysql" targetRuntime="MyBatis3" defaultModelType="flat">
+        <commentGenerator>
+            <!-- 是否取消注释 -->
+            <property name="suppressAllComments" value="true"></property>
+            <!-- 是否生成注释代时间戳-->
+            <property name="suppressDate" value="true"></property>
+            <!-- 生成的Java文件的编码 -->
+            <property name="javaFileEncoding" value="utf-8"/>
+            <!-- 格式化java代码-->
+            <property name="javaFormatter" value="org.mybatis.generator.api.dom.DefaultJavaFormatter"></property>
+            <!-- 格式化XML代码-->
+            <property name="xmlFormatter" value="org.mybatis.generator.api.dom.DefaultXmlFormatter"></property>
+        </commentGenerator>
+
+        <!-- 必须要有的，使用这个配置链接数据库 -->
+        <jdbcConnection driverClass="${jdbc.driverClassName}"
+                        connectionURL="${jdbc.url}"
+                        userId="${jdbc.user}"
+                        password="${jdbc.password}">
+        </jdbcConnection>
+
+        <!-- java类型处理器
+           用于处理DB中的类型到Java中的类型，默认使用JavaTypeResolverDefaultImpl；
+           注意一点，默认会先尝试使用Integer，Long，Short等来对应DECIMAL和 NUMERIC数据类型；
+       -->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <javaModelGenerator targetPackage="${domainPackage}" targetProject="${src_main_java}">
+            <!-- 在targetPackage的基础上，根据数据库的schema再生成一层package，最终生成的类放在这个package下，默认为false-->
+            <property name="enableSubPackages" value="false"></property>
+            <!-- 设置是否在getter方法中，对String类型字段调用trim()方法 -->
+            <property name="trimStrings" value="false"></property>
+            <!--自动为每一个生成的类创建一个构造方法，构造方法包含了所有的field；而不是使用setter-->
+            <property name="constructorBased" value="false"></property>
+        </javaModelGenerator>
+
+        <!--生成SQL map的XML文件生成器-->
+        <sqlMapGenerator targetPackage="${sqlMapperPackage}" targetProject="${src_main_resources}">
+            <property name="enableSubPackages" value="false"></property>
+        </sqlMapGenerator>
+
+        <!--对于mybatis来说，即生成Mapper接口-->
+        <javaClientGenerator targetPackage="${daoPackage}" targetProject="${src_main_java}" type="XMLMAPPER">
+            <property name="enableSubPackages" value="false"/>
+        </javaClientGenerator>
+
+        <!-- 表名, mapper名和接口名, domain名  -->
+        <!-- <table tableName="business_order" mapperName="BusinessOrderMapper" domainObjectName="BusinessOrder" enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               enableUpdateByExample="false"
+               selectByExampleQueryId="false">
+		</table>
+        <table tableName="business_order_goodsdetail_change" mapperName="BusinessOrderGoodsdetailChangeMapper" domainObjectName="BusinessOrderGoodsdetailChange" enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               enableUpdateByExample="false"
+               selectByExampleQueryId="false">
+		</table> -->
+
+        <table tableName="student" domainObjectName="Student"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               enableUpdateByExample="false"
+               selectByExampleQueryId="false">
+        </table>
+
+    </context>
+</generatorConfiguration>

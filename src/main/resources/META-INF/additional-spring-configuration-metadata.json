@@ -1,0 +1,9 @@
+{
+  "properties": [
+    {
+      "name": "log4j.appender.stdout",
+      "type": "java.lang.String",
+      "description": "Description for log4j.appender.stdout."
+    }
+  ]
+}

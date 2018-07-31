@@ -1,0 +1,73 @@
+test:
+  user:
+    username: tom
+    age: 18
+    toString: the age of ${test.user.username} is ${test.user.age}
+  student:
+    name: jack
+    age: 11
+    info: the age of ${test.student.name} is ${test.student.age}
+
+project:
+  debug: false
+  dateFormatPattern: yyyy-MM-dd HH:mm:ss
+
+spring:
+  profiles:
+    active:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    #password: 123456
+    password: root
+    url: jdbc:mysql://localhost:3306/blog?useSSL=false&characterEncoding=utf-8
+  freemarker:
+    template-loader-path: classpath:/templates/
+    cache: false
+    charset: UTF-8
+    check-template-location: true
+    content-type: text/html
+    expose-request-attributes: true
+    expose-session-attributes: true
+    request-context-attribute: request
+    suffix: .ftl
+  http:
+    encoding:
+      charset: UTF-8
+
+
+mybatis:
+  type-aliases-package: cn.saytime.*
+  mapper-locations: classpath:mappers/*.xml
+  config-location: classpath:generatorConfig/mybatis-config.xml
+
+mapper:
+    mappers:
+        - cn.saytime.framework.dao.GenericMapper
+    not-empty: false
+    identity: MYSQL
+
+#log4配置
+log4j:
+  rootCategory: stdout
+  # 控制台输出
+  appender:
+    stdout: org.apache.log4j.ConsoleAppender
+    layout: org.apache.log4j.PatternLayout
+    ConsoleAppender: yyyy-MM-dd HH:mm:ss
+
+logging:
+  level:
+    com:
+      looedu:
+        mapper: debug
+
+
+
+
+
+
+
+
+
+
