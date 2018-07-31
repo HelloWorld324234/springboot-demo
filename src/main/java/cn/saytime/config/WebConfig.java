@@ -17,7 +17,7 @@ import java.util.List;
  */
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = {"cn.saytime.*"},useDefaultFilters = true)
+@ComponentScan(basePackages = {"cn.saytime.controller"},useDefaultFilters = true)
 public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Bean
@@ -31,7 +31,11 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     }
 
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler(new String[]{"swagger-ui.html"}).addResourceLocations(new String[]{"classpath:/META-INF/resources/"});
+        registry.addResourceHandler(new String[]{"swagger-ui.html"}).
+                addResourceLocations(new String[]{"classpath:/META-INF/resources/"});
+
+        registry.addResourceHandler(new String[]{"/webjars/**"})
+                .addResourceLocations(new String[]{"classpath:/META-INF/resources/webjars/"});
     }
 
 }
