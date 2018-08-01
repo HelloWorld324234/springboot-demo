@@ -1,6 +1,7 @@
 package cn.saytime.config;
 
 import cn.saytime.annotation.AppResponsBody;
+import cn.saytime.framework.webapp.RestfulApiResponse;
 import cn.saytime.model.ResultInfo;
 import com.google.gson.Gson;
 import org.springframework.core.MethodParameter;
@@ -33,10 +34,12 @@ public class FormatJsonReturnValueHandler implements HandlerMethodReturnValueHan
         PrintWriter writer = null;
         Gson gson=new Gson();
         ResultInfo info=new ResultInfo();
+        RestfulApiResponse restfulApiResponse = new RestfulApiResponse();
+        restfulApiResponse.setResult(returnValue);
         info.setData(returnValue);
         try {
             writer = response.getWriter();
-            writer.write(gson.toJson(info));
+            writer.write(gson.toJson(restfulApiResponse));
             writer.flush();
         } catch (IOException ex) {
             ex.printStackTrace();

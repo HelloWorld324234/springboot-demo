@@ -26,6 +26,9 @@
 
         <mapper.starter.version>2.0.3-beta1</mapper.starter.version>
 
+       <!-- <jackson.version>1.9.13</jackson.version>
+        <jackson.core.version>2.4.2</jackson.core.version>-->
+
     </properties>
 
     <dependencies>
@@ -197,6 +200,23 @@
             <artifactId>springboot-first-demo</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>-->
+
+        <!-- json数据 -->
+         <!--<dependency>
+             <groupId>org.codehaus.jackson</groupId>
+             <artifactId>jackson-mapper-asl</artifactId>
+             <version>${jackson.version}</version>
+         </dependency>
+         <dependency>
+             <groupId>com.fasterxml.jackson.core</groupId>
+             <artifactId>jackson-core</artifactId>
+             <version>${jackson.core.version}</version>
+         </dependency>
+         <dependency>
+             <groupId>com.fasterxml.jackson.core</groupId>
+             <artifactId>jackson-databind</artifactId>
+             <version>${jackson.core.version}</version>
+         </dependency>-->
 
     </dependencies>
 

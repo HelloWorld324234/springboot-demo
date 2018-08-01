@@ -14,7 +14,9 @@ import java.lang.reflect.ParameterizedType;
 import java.util.*;
 
 /**
- * 通用数据库访问接口
+ * @Auth: yule
+ * @Date: 2018/7/21
+ * @Description: 通用数据库访问接口
  *
  * @param <E> 一般为实体类对象
  * @param <PK> 一般为主键类型，即String类型

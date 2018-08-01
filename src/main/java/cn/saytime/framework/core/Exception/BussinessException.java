@@ -1,5 +1,6 @@
 package cn.saytime.framework.core.Exception;
 
+import cn.saytime.framework.core.pojo.ErrorCode;
 import lombok.Data;
 
 /**
@@ -15,6 +16,13 @@ public class BussinessException extends RuntimeException {
     private Integer code;
 
     private String message;
+
+    private ErrorCode errorCode;
+
+    public BussinessException(ErrorCode errorCode) {
+        super();
+        this.errorCode = errorCode;
+    }
 
     public BussinessException(String message) {
         super();

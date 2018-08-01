@@ -4,6 +4,7 @@ import cn.saytime.framework.dao.GenericDao;
 import cn.saytime.mappers.UserMapper;
 import cn.saytime.model.User;
 import cn.saytime.model.dto.UserSearchDto;
+import cn.saytime.utils.PublicUtil;
 import com.github.pagehelper.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -39,7 +40,7 @@ public class UserDao extends GenericDao<User,String> {
     public List<User> selectByUserName(String user_name) {
         Example example = new Example(User.class);
         Example.Criteria criteria = example.createCriteria();
-        criteria.andEqualTo("name",user_name);
+        criteria.andLike("name",PublicUtil.warpLike(user_name));
         return selectByExample(example);
     }
 
