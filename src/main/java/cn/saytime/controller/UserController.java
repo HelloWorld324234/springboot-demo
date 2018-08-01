@@ -11,6 +11,7 @@ import cn.saytime.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.NonNull;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,7 @@ import java.util.List;
 
 @Controller
 @Api(description = "用户")
+@Slf4j
 public class UserController {
 
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
@@ -39,7 +41,9 @@ public class UserController {
     @GetMapping("/user/{id}")
     @AppResponsBody
     public User selectById(@PathVariable("id") @NonNull String id) {
-        return userService.selectById(id);
+        User user = userService.selectById(id);
+        log.info("name:{}, address:{}", user.getName(), user.getAddress());
+        return user;
     }
 
     @ApiOperation("通过姓名查询")

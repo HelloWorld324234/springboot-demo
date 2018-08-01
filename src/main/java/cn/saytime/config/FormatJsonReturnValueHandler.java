@@ -39,7 +39,7 @@ public class FormatJsonReturnValueHandler implements HandlerMethodReturnValueHan
         info.setData(returnValue);
         try {
             writer = response.getWriter();
-            writer.write(gson.toJson(restfulApiResponse));
+            writer.write(gson.toJson(info));
             writer.flush();
         } catch (IOException ex) {
             ex.printStackTrace();
