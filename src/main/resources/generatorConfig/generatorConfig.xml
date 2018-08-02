@@ -25,7 +25,7 @@
         <!-- 必须要有的，使用这个配置链接数据库 -->
         <jdbcConnection driverClass="${jdbc.driverClassName}"
                         connectionURL="${jdbc.url}"
-                        userId="${jdbc.user}"
+                        userId="${jdbc.user1}"
                         password="${jdbc.password}">
         </jdbcConnection>
 
@@ -70,7 +70,7 @@
                selectByExampleQueryId="false">
 		</table> -->
 
-        <table tableName="student" domainObjectName="Student"
+        <table tableName="user" domainObjectName="User"
                enableCountByExample="false"
                enableDeleteByExample="false"
                enableSelectByExample="false"

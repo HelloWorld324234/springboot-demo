@@ -3,11 +3,11 @@
 <html lang="en">
 
 <body>
-<#list userList as user>
+<#list userList as user1>
 
-City: ${user.username}! <br>
+City: ${user1.username}! <br>
 Q:Why I like? <br>
-A:${user.age}!
+A:${user1.age}!
 
 </#list>
 </body>

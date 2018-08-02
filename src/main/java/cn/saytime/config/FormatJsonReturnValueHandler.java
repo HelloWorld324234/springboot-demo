@@ -32,8 +32,8 @@ public class FormatJsonReturnValueHandler implements HandlerMethodReturnValueHan
         HttpServletResponse response = webRequest.getNativeResponse(HttpServletResponse.class);
         response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
         PrintWriter writer = null;
-        Gson gson=new Gson();
-        ResultInfo info=new ResultInfo();
+        Gson gson = new Gson();
+        ResultInfo info = new ResultInfo();
         RestfulApiResponse restfulApiResponse = new RestfulApiResponse();
         restfulApiResponse.setResult(returnValue);
         info.setData(returnValue);
