@@ -4,6 +4,7 @@ import cn.saytime.framework.core.Exception.BussinessException;
 import cn.saytime.framework.core.pojo.ErrorCode;
 import cn.saytime.framework.core.pojo.model.ResultVO;
 import com.alibaba.fastjson.JSON;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
@@ -26,6 +27,7 @@ import java.util.List;
  * @Description: 自定义统一异常处理类
  */
 @Component
+@Slf4j
 public class ExceptionResolver implements HandlerExceptionResolver {
 
     private static Logger logger = LoggerFactory.getLogger("exceptionLog");
@@ -133,9 +135,10 @@ public class ExceptionResolver implements HandlerExceptionResolver {
             String methodName = stackTrace[i].getMethodName();
             String fileName = stackTrace[i].getFileName();
             int lineNumber = stackTrace[i].getLineNumber();
-            stringBuilder.append(className + "." + methodName + "." + fileName + "." + lineNumber +"\\r\\n");
+            stringBuilder.append(className + "." + methodName + "." + fileName + "." + lineNumber +"\r\n");
         }
-        System.err.println(stringBuilder.toString());
+        //System.err.println(stringBuilder);
+        ex.printStackTrace();
         return stringBuilder;
     }
 

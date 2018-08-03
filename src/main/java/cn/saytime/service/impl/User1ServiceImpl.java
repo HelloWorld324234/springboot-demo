@@ -12,6 +12,7 @@ import cn.saytime.model.dto.UserSearchDto;
 import cn.saytime.service.User1Service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import lombok.NonNull;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,7 +51,8 @@ public class User1ServiceImpl implements User1Service {
 
     @Override
     public User1 selectById(String id) {
-        return userDao.selectByPrimaryKey(id);
+        @NonNull User1 user1 = userDao.selectByPrimaryKey(id);
+        return user1;
     }
 
     @Override

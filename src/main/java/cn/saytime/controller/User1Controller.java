@@ -1,6 +1,5 @@
 package cn.saytime.controller;
 
-import cn.saytime.annotation.AppResponsBody;
 import cn.saytime.framework.core.pojo.DataTableResponse;
 import cn.saytime.framework.webapp.RestfulApiResponse;
 import cn.saytime.model.User1;
@@ -22,14 +21,11 @@ import java.util.List;
 @Slf4j
 public class User1Controller {
 
-    //private static final Logger logger = LoggerFactory.getLogger(User1Controller.class);
-
     @Autowired
     private User1Service user1Service;
 
     @ApiOperation("查询列表")
     @PostMapping("/query_users")
-    @AppResponsBody
     public DataTableResponse<List<UserResponse>> selectAll(@RequestBody UserSearchDto userSearchDto) {
         return user1Service.selectAll(userSearchDto);
     }
@@ -37,7 +33,7 @@ public class User1Controller {
     @ApiOperation("查询")
     @GetMapping("/user/{id}")
     public User1 selectById(@PathVariable("id") @NonNull String id) {
-        User1 user1 = user1Service.selectById(id);
+        @NonNull User1 user1 = user1Service.selectById(id);
         log.info("name:{}, address:{}", user1.getName(), user1.getAddress());
         return user1;
     }

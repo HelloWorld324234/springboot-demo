@@ -1,6 +1,7 @@
 package cn.saytime.config;
 
-import cn.saytime.framework.webapp.RestfulApiResponse;
+import cn.saytime.constant.SupportsConstant;
+import cn.saytime.model.ResultInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
@@ -24,7 +25,10 @@ public class MyResponseBodyAdvice implements ResponseBodyAdvice {
         log.info("获取当前处理请求的controller的方法-->{}", methodName);
         // 不拦截/不需要处理返回值 的方法
         String method= "loginCheck"; //如登录
-        //不拦截
+        //不拦截与swagger有关的方法
+        if (methodName.contains(SupportsConstant.uiConfiguration) || methodName.contains(SupportsConstant.getDocumentation) || methodName.contains(SupportsConstant.swaggerResources)) {
+            return false;
+        }
         return !method.equals(methodName);
     }
 
@@ -35,10 +39,10 @@ public class MyResponseBodyAdvice implements ResponseBodyAdvice {
                                   Class aClass,
                                   ServerHttpRequest serverHttpRequest,
                                   ServerHttpResponse serverHttpResponse) {
-
-        RestfulApiResponse<?> restfulApiResponse = (RestfulApiResponse<?>) returnValue;
-        restfulApiResponse.setReturnMsg("处理成功");
-        restfulApiResponse.setErrorCode("1000");
-        return restfulApiResponse;
+        ResultInfo resultInfo = new ResultInfo();
+        resultInfo.setCode(new Long(100));
+        resultInfo.setMessage("处理成功");
+        resultInfo.setData(returnValue);
+        return resultInfo;
     }
 }
