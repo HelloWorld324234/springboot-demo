@@ -33,8 +33,8 @@ public class ReturnValueAspect {
     public void doAfterReturning(Object ret) throws Throwable {
         // 处理完请求，返回内容
         */
-/*RestfulApiResponse<User1> restfulApiResponse = new RestfulApiResponse<>();
-        restfulApiResponse.setResult((User1) ret);
+/*RestfulApiResponse<User> restfulApiResponse = new RestfulApiResponse<>();
+        restfulApiResponse.setResult((User) ret);
         restfulApiResponse.setReturnMsg("处理成功");
         restfulApiResponse.setErrorCode("100");
         log.info("方法的返回值 : {}" + restfulApiResponse.toString());*//*

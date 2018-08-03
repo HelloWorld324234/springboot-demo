@@ -1,7 +1,7 @@
 package cn.saytime.model.others;
 
 /**
- * User1: yule
+ * User: yule
  * Date: 2018/4/13 14:54
  * Description:
  */

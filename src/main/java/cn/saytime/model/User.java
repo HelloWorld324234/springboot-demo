@@ -1,29 +1,29 @@
 package cn.saytime.model;
 
-import cn.saytime.framework.core.pojo.GenericModel;
-import lombok.Data;
+import cn.saytime.framework.core.pojo.model.GenericGuidModel;
 
-import java.util.HashSet;
-import java.util.Set;
+public class User extends GenericGuidModel {
 
-/**
- * @Auther: yule
- * @Date: 2018/8/2 0002 09:06
- * @Description:
- */
-@Data
-public class User extends GenericModel<String> {
 
-    private Integer uid;
+    private String name;
 
-    private String username;
+    private String address;
 
-    private String password;
 
-    private Set<Role> roles = new HashSet<>();
-
-    @Override
-    protected String generateId() {
-        return null;
+    public String getName() {
+        return name;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
 }

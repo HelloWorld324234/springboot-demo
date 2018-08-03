@@ -15,7 +15,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class User1ControllerTest {
+public class UserControllerTest {
 
     @Autowired
     private WebApplicationContext webApplicationContext;

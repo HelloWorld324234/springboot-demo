@@ -10,7 +10,7 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 
 /**
- * User1: yule
+ * User: yule
  * Date: 2018/4/13 17:21
  * Description:
  */
