@@ -1,7 +1,5 @@
 package cn.saytime.annotation;
 
-import org.springframework.web.bind.annotation.ResponseBody;
-
 import java.lang.annotation.*;
 
 /**
@@ -28,11 +26,11 @@ import java.lang.annotation.*;
  *3、RetentionPolicy.RUNTIME：注解不仅被保存到class文件中，jvm加载class文件之后，仍然存在；
  *
  * <br>
+ * @Inherited 允许子类继承父类的注解
  */
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-@Documented
-@ResponseBody
+@Inherited
 public @interface AppResponsBody {
 
 

@@ -59,9 +59,7 @@ log4j:
 
 logging:
   level:
-    com:
-      looedu:
-        mapper: debug
+    cn.saytime.mappers: debug
 server:
   port: 8081
 

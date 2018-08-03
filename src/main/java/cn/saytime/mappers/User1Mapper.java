@@ -6,4 +6,5 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface User1Mapper extends GenericMapper<User1> {
+
 }

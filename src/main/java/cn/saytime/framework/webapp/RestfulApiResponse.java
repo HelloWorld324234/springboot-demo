@@ -129,4 +129,15 @@ public class RestfulApiResponse<T> {
     public static <T> RestfulApiResponse<T> error(String message, String stackTrace) {
         return new RestfulApiResponse(Integer.valueOf(-1), "-1", message, stackTrace);
     }
+
+    @Override
+    public String toString() {
+        return "RestfulApiResponse{" +
+                "returnCode=" + returnCode +
+                ", errorCode='" + errorCode + '\'' +
+                ", returnMsg='" + returnMsg + '\'' +
+                ", result=" + result +
+                ", stackTrace='" + stackTrace + '\'' +
+                '}';
+    }
 }
