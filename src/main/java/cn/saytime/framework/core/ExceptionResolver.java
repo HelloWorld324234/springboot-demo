@@ -1,6 +1,7 @@
 package cn.saytime.framework.core;
 
 import cn.saytime.framework.core.Exception.BussinessException;
+import cn.saytime.framework.core.pojo.ErrorCode;
 import cn.saytime.framework.core.pojo.model.ResultVO;
 import com.alibaba.fastjson.JSON;
 import org.slf4j.Logger;
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -37,7 +39,7 @@ public class ExceptionResolver implements HandlerExceptionResolver {
         StringBuilder stringBuffer = new StringBuilder();
         // 处理异常
         if (e instanceof BussinessException) {
-            resolverBussinessException(e, stringBuffer, resultVO);
+            resolverBussinessException(e, stringBuffer, resultVO,  ((BussinessException) e).getErrorCode());
         }
         // 处理参数异常
         else if (e instanceof BindException) {
@@ -47,10 +49,9 @@ public class ExceptionResolver implements HandlerExceptionResolver {
         else {
             resolverOtherException(e, stringBuffer, resultVO);
         }
-
-        resultVO.setCode(0);
-        resultVO.setResult(stringBuffer);
-        resultVO.setTime(new Date());
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String format = simpleDateFormat.format(new Date());
+        resultVO.setTime(format);
 
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
         response.setCharacterEncoding("UTF-8");
@@ -64,7 +65,7 @@ public class ExceptionResolver implements HandlerExceptionResolver {
         }
 
         logger.debug("异常：" + e.getMessage(), e);
-        e.printStackTrace();
+        //e.printStackTrace();
 
         return new ModelAndView();
 
@@ -77,10 +78,11 @@ public class ExceptionResolver implements HandlerExceptionResolver {
      * @param sb
      * @param resultVO
      */
-    private void resolverBussinessException(Exception ex, StringBuilder sb, ResultVO resultVO) {
-        BussinessException bussinessException = (BussinessException) ex;
-        sb.append(bussinessException.getMessage());
+    private void resolverBussinessException(Exception ex, StringBuilder sb, ResultVO resultVO,ErrorCode errorCode) {
         addResult(resultVO, "业务异常");
+        addResult(resultVO, errorCode);
+        StringBuilder stringBuilder = resultInfo(ex);
+        addResult(resultVO, stringBuilder);
     }
 
     /**
@@ -111,8 +113,30 @@ public class ExceptionResolver implements HandlerExceptionResolver {
      * @param resultVO
      */
     private void resolverOtherException(Exception ex, StringBuilder stringBuilder, ResultVO resultVO) {
-        stringBuilder.append(ex.getMessage());
-        addResult(resultVO, "other exception");
+        addResult(resultVO, "other exception : " + resultInfo(ex));
+    }
+
+    /**
+     * 获取具体的错误信息
+     *
+     * @param ex
+     * @return
+     */
+    public StringBuilder resultInfo(Exception ex) {
+        if (null == ex) {
+            return null;
+        }
+        StringBuilder stringBuilder = new StringBuilder();
+        StackTraceElement[] stackTrace = ex.getStackTrace();
+        for (int i= 0; i < stackTrace.length; i++) {
+            String className = stackTrace[i].getClassName();
+            String methodName = stackTrace[i].getMethodName();
+            String fileName = stackTrace[i].getFileName();
+            int lineNumber = stackTrace[i].getLineNumber();
+            stringBuilder.append(className + "." + methodName + "." + fileName + "." + lineNumber +"\\r\\n");
+        }
+        System.err.println(stringBuilder.toString());
+        return stringBuilder;
     }
 
 
@@ -124,6 +148,26 @@ public class ExceptionResolver implements HandlerExceptionResolver {
      */
     private void addResult(ResultVO result, String msg) {
         result.setMsg(msg);
+    }
+
+    /**
+     * 封装、result
+     *
+     * @param result
+     * @param msg
+     */
+    private void addResult(ResultVO result, StringBuilder msg) {
+        result.setResult(msg);
+    }
+
+    /**
+     * 封装、errorCode
+     *
+     * @param result
+     * @param errorCode
+     */
+    private void addResult(ResultVO result, ErrorCode errorCode) {
+        result.setCode(errorCode.getCode());
     }
 }
 

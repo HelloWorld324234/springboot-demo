@@ -1,6 +1,7 @@
 package cn.saytime.service.impl;
 
 import cn.saytime.dao.User1Dao;
+import cn.saytime.exception.DemoErrorCode;
 import cn.saytime.framework.core.Exception.BussinessException;
 import cn.saytime.framework.core.pojo.DataTableResponse;
 import cn.saytime.framework.utils.RedisUtil;
@@ -55,7 +56,8 @@ public class User1ServiceImpl implements User1Service {
     @Override
     public boolean insert(UserDto userDto) {
         if (userDao.checkRepeat(userDto.getName())) {
-            throw new BussinessException(0, "用户名已存在");
+            throw new BussinessException(DemoErrorCode.USER_NAME_REPEAT_EXCEPTION);
+            //throw new BussinessException(0, "用户名已存在");
         }
         User1 user1 = new User1();
         BeanUtils.copyProperties(userDto, user1);

@@ -12,20 +12,18 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 @Api(description = "用户")
 @Slf4j
+@AppResponsBody
 public class User1Controller {
 
-    private static final Logger logger = LoggerFactory.getLogger(User1Controller.class);
+    //private static final Logger logger = LoggerFactory.getLogger(User1Controller.class);
 
     @Autowired
     private User1Service user1Service;
@@ -39,7 +37,7 @@ public class User1Controller {
 
     @ApiOperation("查询")
     @GetMapping("/user/{id}")
-    @AppResponsBody
+    //@AppResponsBody
     public User1 selectById(@PathVariable("id") @NonNull String id) {
         User1 user1 = user1Service.selectById(id);
         log.info("name:{}, address:{}", user1.getName(), user1.getAddress());

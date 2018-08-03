@@ -1,9 +1,6 @@
 package cn.saytime.framework.core.pojo.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
-
-import java.util.Date;
 
 /**
  * @Auther: yule
@@ -15,11 +12,10 @@ public class ResultVO {
 
     private String msg;
 
-    private int code;
+    private String code;
 
     private StringBuilder result;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date time;
+    private String time;
 
 }
